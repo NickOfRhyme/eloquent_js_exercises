@@ -1,5 +1,7 @@
 const { expect } = require("chai");
 const { chessBoard } = require("../chap2/chess_board");
+const { fizzBuzz } = require("../chap2/fizz_buzz");
+const { loopingTriangle } = require("../chap2/looping_triangle");
 
 describe("chessBoard", () => {
   it("returns a string", () => {
@@ -38,5 +40,37 @@ describe("chessBoard", () => {
     newLines = size;
     expected = size * size + newLines;
     expect(chessBoard(size).length).to.equal(expected);
+  });
+});
+
+describe("fizzBuzz", () => {
+  it('multiples of three that are not multiples of five equal "Fizz"', () => {
+    expect(fizzBuzz()[2]).to.equal("Fizz");
+    expect(fizzBuzz()[5]).to.equal("Fizz");
+    expect(fizzBuzz()[8]).to.equal("Fizz");
+    expect(fizzBuzz()[11]).to.equal("Fizz");
+    expect(fizzBuzz()[14]).to.not.equal("Fizz");
+  });
+  it('multiples of five that are not multiples of three equal "Buzz"', () => {
+    expect(fizzBuzz()[4]).to.equal("Buzz");
+    expect(fizzBuzz()[9]).to.equal("Buzz");
+    expect(fizzBuzz()[19]).to.equal("Buzz");
+    expect(fizzBuzz()[24]).to.equal("Buzz");
+    expect(fizzBuzz()[29]).to.not.equal("Buzz");
+  });
+  it("multiples of three and five equal 'FizzBuzz", () => {
+    expect(fizzBuzz()[14]).to.equal("FizzBuzz");
+    expect(fizzBuzz()[29]).to.equal("FizzBuzz");
+    expect(fizzBuzz()[44]).to.equal("FizzBuzz");
+    expect(fizzBuzz()[59]).to.equal("FizzBuzz");
+    expect(fizzBuzz()[74]).to.equal("FizzBuzz");
+    expect(fizzBuzz()[89]).to.equal("FizzBuzz");
+  });
+});
+
+describe("loopingTriangle", () => {
+  it("returns the correct string", () => {
+    expected = "#\n##\n###\n####\n#####\n######\n#######\n";
+    expect(loopingTriangle()).to.equal(expected);
   });
 });
