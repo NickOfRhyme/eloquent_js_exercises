@@ -1,0 +1,23 @@
+{
+  "name": "eloquent",
+  "version": "1.0.0",
+  "description": "Solutions to the exercises in 'Eloquent Javascript'",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickOfRhyme/eloquent_js_exercises.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickOfRhyme/eloquent_js_exercises/issues"
+  },
+  "homepage": "https://github.com/NickOfRhyme/eloquent_js_exercises#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2"
+  }
+}
