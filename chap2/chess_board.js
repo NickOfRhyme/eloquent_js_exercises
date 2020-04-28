@@ -14,7 +14,7 @@ const chessBoard = (size) => {
   return board;
 };
 
-const beingRequired = module.parent;
+const beingRequired = module.parent !== undefined;
 if (!beingRequired) {
   const size = +process.argv[2] || 8;
   console.log(chessBoard(size));

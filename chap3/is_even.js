@@ -4,7 +4,11 @@ const isEven = (num) => {
   return isEven(num - 2);
 };
 
-const num = parseInt(process.argv[2]);
+const beingRequired = module.parent !== undefined;
+if (!beingRequired) {
+  const num = parseInt(process.argv[2]);
 
-if (!num || Number.isNaN(num)) console.log("usage: isEven [number]");
-else console.log(`${num} is ${isEven(num) ? "even" : "odd"}`);
+  if (!num || Number.isNaN(num)) console.log("usage: isEven [number]");
+  else console.log(`${num} is ${isEven(num) ? "even" : "odd"}`);
+}
+module.exports = { isEven };
