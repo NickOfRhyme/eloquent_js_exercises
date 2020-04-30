@@ -70,7 +70,7 @@ describe("fizzBuzz", () => {
 
 describe("loopingTriangle", () => {
   it("returns the correct string", () => {
-    expected = "#\n##\n###\n####\n#####\n######\n#######\n";
+    const expected = "#\n##\n###\n####\n#####\n######\n#######\n";
     expect(loopingTriangle()).to.equal(expected);
   });
 });

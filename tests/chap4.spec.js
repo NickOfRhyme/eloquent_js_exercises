@@ -1,6 +1,12 @@
 const { expect } = require("chai");
 const { sum, range } = require("../chap4/sum_range");
 const { reverseArray, reverseArrayInPlace } = require("../chap4/reverse_array");
+const {
+  arrayToList,
+  listToArray,
+  prependToList,
+  nthItemInList
+} = require("../chap4/list");
 
 describe("range", () => {
   it("returns an array", () => {
@@ -81,6 +87,78 @@ describe("reverseArrayInPlace", () => {
     const input = [];
     const actual = reverseArrayInPlace(input);
     const expected = input;
+    expect(actual).to.equal(expected);
+  });
+});
+
+describe("arrayToList", () => {
+  it("returns an object", () => {
+    expect(arrayToList()).to.be.an("object");
+  });
+  it("object returned has list structure with values based around input array", () => {
+    const input = [1, 2, 3];
+    const actual = arrayToList(input);
+    const expected = {
+      value: 1,
+      next: { value: 2, next: { value: 3, next: null } }
+    };
+    expect(actual).to.deep.equal(expected);
+  });
+});
+
+describe("listToArray", () => {
+  it("returns an array", () => {
+    expect(listToArray()).to.be.an("array");
+  });
+  it("values in array match those in list", () => {
+    const input = {
+      value: 1,
+      next: { value: 2, next: { value: 3, next: null } }
+    };
+    const actual = listToArray(input);
+    const expected = [1, 2, 3];
+    expect(actual).to.deep.equal(expected);
+  });
+});
+
+describe("prependToList", () => {
+  it("returns an object", () => {
+    expect(prependToList()).to.be.an("object");
+  });
+  it("does not mutate input", () => {
+    const input = { value: 1, next: null };
+    const actual = prependToList(2, input);
+    const unexpected = input;
+    expect(actual).not.to.equal(input);
+  });
+  it("successfully prepends item to list", () => {
+    const inputElement = 10;
+    const inputList = {
+      value: 1,
+      next: { value: 2, next: { value: 3, next: null } }
+    };
+    const expected = {
+      value: 10,
+      next: { value: 1, next: { value: 2, next: { value: 3, next: null } } }
+    };
+    const actual = prependToList(inputElement, inputList);
+    expect(actual).to.deep.equal(expected);
+  });
+});
+
+describe("nthItemInList", () => {
+  it("returns the correct item in a list when that item exists", () => {
+    const inputList = { value: 0, next: { value: "one", next: null } };
+    const inputN = 1;
+    const actual = nthItemInList(inputN, inputList);
+    const expected = "one";
+    expect(actual).to.equal(expected);
+  });
+  it("returns undefined when list is shorter than n", () => {
+    const inputList = { value: 0, next: { value: "one", next: null } };
+    const inputN = 2;
+    const actual = nthItemInList(inputN, inputList);
+    const expected = undefined;
     expect(actual).to.equal(expected);
   });
 });
