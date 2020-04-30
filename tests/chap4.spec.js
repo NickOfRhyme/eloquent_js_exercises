@@ -7,6 +7,7 @@ const {
   prependToList,
   nthItemInList
 } = require("../chap4/list");
+const { deepEqual } = require("../chap4/deep_equal");
 
 describe("range", () => {
   it("returns an array", () => {
@@ -159,6 +160,95 @@ describe("nthItemInList", () => {
     const inputN = 2;
     const actual = nthItemInList(inputN, inputList);
     const expected = undefined;
+    expect(actual).to.equal(expected);
+  });
+});
+
+describe("deepEqual", () => {
+  it("returns true when comparing equal values which are not objects", () => {
+    let inputA = 1;
+    let inputB = 1;
+    let actual = deepEqual(inputA, inputB);
+    let expected = true;
+    expect(actual).to.equal(expected);
+    inputA = "Hello";
+    inputB = "Hello";
+    actual = deepEqual(inputA, inputB);
+    expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when comparing unequal values which are not objects", () => {
+    let inputA = 2;
+    let inputB = 1;
+    let actual = deepEqual(inputA, inputB);
+    let expected = false;
+    expect(actual).to.equal(expected);
+    inputA = "Hello";
+    inputB = "hello";
+    actual = deepEqual(inputA, inputB);
+    expected = false;
+    expect(actual).to.equal(expected);
+  });
+  it("returns true when comparing two null values", () => {
+    const inputA = null;
+    const inputB = null;
+    const actual = deepEqual(inputA, inputB);
+    const expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when comparing a null value with an object", () => {
+    const inputA = null;
+    const inputB = { value: null };
+    const actual = deepEqual(inputA, inputB);
+    const expected = false;
+    expect(actual).to.equal(expected);
+  });
+  it("returns true when comparing two objects with the same values", () => {
+    let inputA = { value1: 1, value2: 2 };
+    let inputB = { value1: 1, value2: 2 };
+    let actual = deepEqual(inputA, inputB);
+    let expected = true;
+    expect(actual).to.equal(expected);
+    inputA = { value1: "one", value2: { value3: "three" } };
+    inputB = { value1: "one", value2: { value3: "three" } };
+    actual = deepEqual(input);
+    expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when comparing two objects with different values", () => {
+    let inputA = { value1: 1, value2: 2 };
+    let inputB = { value1: 1, value2: 5 };
+    let actual = deepEqual(inputA, inputB);
+    let expected = false;
+    expect(actual).to.equal(expected);
+    inputA = { value1: "one", value2: { value3: "three" } };
+    inputB = { value1: "one", value2: { value3: "seventy" } };
+    actual = deepEqual(input);
+    expected = false;
+    expect(actual).to.equal(expected);
+  });
+  it("returns true when comparing two arrays with the same values", () => {
+    let inputA = [1, 2];
+    let inputB = [1, 2];
+    let actual = deepEqual(inputA, inputB);
+    let expected = true;
+    expect(actual).to.equal(expected);
+    inputA = ["one", ["three"]];
+    inputB = ["one", ["three"]];
+    actual = deepEqual(input);
+    expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when comparing two arrays with different values", () => {
+    let inputA = [1, 2];
+    let inputB = [1, 5];
+    let actual = deepEqual(inputA, inputB);
+    let expected = false;
+    expect(actual).to.equal(expected);
+    inputA = ["one", ["three"]];
+    inputB = ["one", ["seventy"]];
+    actual = deepEqual(input);
+    expected = false;
     expect(actual).to.equal(expected);
   });
 });
