@@ -211,8 +211,15 @@ describe("deepEqual", () => {
     expect(actual).to.equal(expected);
     inputA = { value1: "one", value2: { value3: "three" } };
     inputB = { value1: "one", value2: { value3: "three" } };
-    actual = deepEqual(input);
+    actual = deepEqual(inputA, inputB);
     expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when comparing two objects with the same values, where one object has additional keys", () => {
+    const inputA = { value1: 1, value2: 2, value3: 3 };
+    const inputB = { value1: 1, value2: 2 };
+    const actual = deepEqual(inputA, inputB);
+    const expected = false;
     expect(actual).to.equal(expected);
   });
   it("returns false when comparing two objects with different values", () => {
@@ -223,7 +230,7 @@ describe("deepEqual", () => {
     expect(actual).to.equal(expected);
     inputA = { value1: "one", value2: { value3: "three" } };
     inputB = { value1: "one", value2: { value3: "seventy" } };
-    actual = deepEqual(input);
+    actual = deepEqual(inputA, inputB);
     expected = false;
     expect(actual).to.equal(expected);
   });
@@ -235,7 +242,7 @@ describe("deepEqual", () => {
     expect(actual).to.equal(expected);
     inputA = ["one", ["three"]];
     inputB = ["one", ["three"]];
-    actual = deepEqual(input);
+    actual = deepEqual(inputA, inputB);
     expected = true;
     expect(actual).to.equal(expected);
   });
@@ -247,7 +254,7 @@ describe("deepEqual", () => {
     expect(actual).to.equal(expected);
     inputA = ["one", ["three"]];
     inputB = ["one", ["seventy"]];
-    actual = deepEqual(input);
+    actual = deepEqual(inputA, inputB);
     expected = false;
     expect(actual).to.equal(expected);
   });
