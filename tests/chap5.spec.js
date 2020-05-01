@@ -1,5 +1,6 @@
 const { expect } = require("chai");
 const { flatten } = require("../chap5/flatten");
+const { loop } = require("../chap5/loop");
 
 describe("flatten", () => {
   it("returns an array", () => {
@@ -28,5 +29,17 @@ describe("flatten", () => {
     const actual = flatten(input);
     const expected = [1, 2, 3, 4, 5];
     expect(actual).to.deep.equal(expected);
+  });
+});
+
+describe("loop", () => {
+  it("provides equivalent functionality to for loop", () => {
+    const loopVal = 0;
+    const loopTest = (val) => val < 10;
+    const loopUpdate = (val) => (val += 3);
+    let forVal;
+    const actual = loop(loopVal, loopTest, loopUpdate);
+    for (forVal = 0; forVal < 10; forVal += 3);
+    expect(actual).to.equal(forVal);
   });
 });
