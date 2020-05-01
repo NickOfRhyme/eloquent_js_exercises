@@ -1,6 +1,7 @@
 const { expect } = require("chai");
 const { flatten } = require("../chap5/flatten");
 const { loop } = require("../chap5/loop");
+const { everythingLoop, everythingSome } = require("../chap5/everything");
 
 describe("flatten", () => {
   it("returns an array", () => {
@@ -41,5 +42,53 @@ describe("loop", () => {
     const actual = loop(loopVal, loopTest, loopUpdate);
     for (forVal = 0; forVal < 10; forVal += 3);
     expect(actual).to.equal(forVal);
+  });
+});
+
+describe("everythingLoop", () => {
+  it("returns true when all elements of input array pass test", () => {
+    const inputArr = [1, 2, 3, 4, 5];
+    const inputTest = Number.isInteger;
+    const actual = everythingLoop(inputArr, inputTest);
+    const expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when no elements of input array pass test", () => {
+    const inputArr = [1.2, 2.1, 7.89, 4.12, 5.4];
+    const inputTest = Number.isInteger;
+    const actual = everythingLoop(inputArr, inputTest);
+    const expected = false;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when any elements of input array fail test", () => {
+    const inputArr = [1, 2, 7.89, 4, 5];
+    const inputTest = Number.isInteger;
+    const actual = everythingLoop(inputArr, inputTest);
+    const expected = false;
+    expect(actual).to.equal(expected);
+  });
+});
+
+describe("everythingSome", () => {
+  it("returns true when all elements of input array pass test", () => {
+    const inputArr = [1, 2, 3, 4, 5];
+    const inputTest = Number.isInteger;
+    const actual = everythingSome(inputArr, inputTest);
+    const expected = true;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when no elements of input array pass test", () => {
+    const inputArr = [1.2, 2.1, 7.89, 4.12, 5.4];
+    const inputTest = Number.isInteger;
+    const actual = everythingSome(inputArr, inputTest);
+    const expected = false;
+    expect(actual).to.equal(expected);
+  });
+  it("returns false when any elements of input array fail test", () => {
+    const inputArr = [1, 2, 7.89, 4, 5];
+    const inputTest = Number.isInteger;
+    const actual = everythingSome(inputArr, inputTest);
+    const expected = false;
+    expect(actual).to.equal(expected);
   });
 });
