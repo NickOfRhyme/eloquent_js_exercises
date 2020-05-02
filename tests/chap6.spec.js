@@ -105,4 +105,13 @@ describe("Group", () => {
     const group = Group.from([1, 1, 2, 2, 3, 3, 4, 4, 5, 5]);
     expect(group.length).to.equal(5);
   });
+  it("group can be iterated over", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const group = Group.from(arr);
+    let arrIndex = 0;
+    for (let entry of group) {
+      expect(entry).to.equal(arr[arrIndex]);
+      arrIndex++;
+    }
+  });
 });
